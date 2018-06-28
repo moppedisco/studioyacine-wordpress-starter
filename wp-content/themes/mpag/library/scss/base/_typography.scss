@@ -1,0 +1,136 @@
+/******************************************************************
+Site Name: mpag.com
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Typography
+
+******************************************************************/
+/*
+some nice typographical defaults
+more here: http://www.newnet-soft.com/blog/csstypography
+*/
+
+// font stacks
+$sans-serif: "Circular-Book", -apple-system, system-ui, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$sans-serif-bold: "Circular-Bold", -apple-system, system-ui, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$sans-serif-italic: "Circular-Bookitalic", -apple-system, system-ui,
+  BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$serif: "Georgia", Cambria, Times New Roman, Times, serif;
+
+/******************************************************************
+H1, H2, H3, H4, H5, H6 STYLES
+******************************************************************/
+
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5 {
+  font-family: $sans-serif-bold;
+  text-rendering: optimizelegibility;
+  font-weight: 400;
+  color: #000;
+  margin-top: 0;
+  /*
+	if you're going to use webfonts, be sure to check your weights
+	http://css-tricks.com/watch-your-font-weight/
+	*/
+
+  /* removing text decoration from all headline links */
+  a {
+    // text-decoration: none;
+  }
+}
+
+h1,
+.h1 {
+  @include ms-respond(font-size, 4);
+}
+h2,
+.h2 {
+  @include ms-respond(font-size, 3);
+}
+h3,
+.h3 {
+  @include ms-respond(font-size, 2);
+}
+h4,
+.h4 {
+  @include ms-respond(font-size, 1.5);
+}
+h5,
+.h5 {
+  @include ms-respond(font-size, 1);
+}
+h6,
+.h6 {
+  @include ms-respond(font-size, 0);
+}
+
+/* Let's make sure all's aligned */
+hr,
+.hr {
+  border: 1px solid;
+  margin: -1px 0;
+}
+
+sub,
+sup {
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+
+b,
+strong {
+  font-weight: 400;
+  font-family: $sans-serif-bold;
+}
+
+em,
+i {
+  font-style: normal;
+  font-family: $sans-serif-italic;
+}
+
+/*********************
+LINK STYLES
+*********************/
+
+a,
+a:visited {
+  color: $link-color;
+
+  /* on hover */
+  &:hover,
+  &:focus {
+    color: $link-hover;
+  }
+
+  /* on click */
+  &:active {
+  }
+
+  /* mobile tap color */
+  &:link {
+    /*
+		this highlights links on iPhones/iPads.
+		so it basically works like the :hover selector
+		for mobile devices.
+		*/
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+  }
+}

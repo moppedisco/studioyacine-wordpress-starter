@@ -1,0 +1,42 @@
+/******************************************************************
+Site Name: mpag.com
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Variables
+
+******************************************************************/
+
+$site-width: 1300px;
+$site-columns: 12;
+
+$bp-medium: 45em;
+$bp-large: 80em;
+$bp-Xlarge: 120em;
+
+// Colors
+$alert-yellow: #ebe16f;
+$alert-red: #fbe3e4;
+$alert-green: #e6efc2;
+$alert-blue: #d5edf8;
+
+$black: #000;
+$white: #fff;
+
+$blue: #2980b9;
+
+$light-gray: #f8f9fa;
+$gray: #eaedf2;
+$text-color: #5c6b80;
+$meta-gray: #9fa6b4;
+
+$link-color: $black;
+$link-hover: darken($link-color, 9%);
+
+$border-color: #ccc;
+$disabled-gray: #cfcfcf;
+
+$mobile-landscape: 30rem; // 480px
+$tablet: 40rem; // 640px
+$tablet-wide: 48rem; // 768px
+$desktop: 64rem; // 1024px
+$widescreen: 71.25rem; // 1140px
