@@ -1,0 +1,18 @@
+/******************************************************************
+Site Name: mpag.com
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Mixins Stylesheet
+
+******************************************************************/
+
+/*********************
+CLEARFIX
+*********************/
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

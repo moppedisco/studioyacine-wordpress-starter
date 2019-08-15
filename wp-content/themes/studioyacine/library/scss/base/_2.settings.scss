@@ -1,0 +1,21 @@
+/******************************************************************
+Site Name: mpag.com
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Settings
+
+******************************************************************/
+
+$ms-fluid: false;
+$modularscale: (
+  base: 12px,
+  ratio: 1,
+  400px: (
+    base: 14px,
+    ratio: 1.2
+  ),
+  1200px: (
+    base: 20px,
+    ratio: 1.35
+  )
+);

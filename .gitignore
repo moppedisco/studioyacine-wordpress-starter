@@ -33,7 +33,8 @@ sitemap.xml.gz
 wp-content/themes/twenty*
 
 # ignore node/grunt dependency directories
-*/node_modules/
+node_modules/
+build/
 
 # html5 boilerplate #
 initializr/

@@ -1,0 +1,36 @@
+/******************************************************************
+Site Name: mpag.com
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Main Stylesheet
+
+******************************************************************/
+
+/*********************
+IMPORTING PLUGINS
+*********************/
+@import "./node_modules/modularscale-sass/stylesheets/_modularscale";
+
+/*********************
+IMPORTING BASE
+*********************/
+
+@import "base/0.normalize"; // normalize: http://necolas.github.io/normalize.css/
+@import "base/1.variables"; // Sass variables
+@import "base/2.settings"; // Site settings
+@import "base/3.fonts"; // Fonts
+@import "base/typography"; // typography
+@import "base/mixins"; // import mixins
+@import "base/site-base"; // import mixins
+
+/*********************
+IMPORTING MODULES
+*********************/
+
+@import "modules/buttons";
+
+/*********************
+IMPORTING PAGE SPECIFIC STYLES
+*********************/
+
+@import "main"; // BASIC STYLES
