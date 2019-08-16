@@ -1,5 +1,5 @@
 /******************************************************************
-Site Name: mpag.com
+Site Name: 
 Author: Yacine Belarbi @ studioyacine.ch
 
 Stylesheet: Admin Stylesheet
@@ -18,3 +18,11 @@ Stylesheet: Admin Stylesheet
 #wp-admin-bar-wp-logo {
   display: none;
 }
+
+/* #adminmenu .menu-icon-news div.wp-menu-image img {
+    display: none;
+}
+
+#adminmenu .menu-icon-news div.wp-menu-image:before {
+  content: "\f464" !important;
+} */

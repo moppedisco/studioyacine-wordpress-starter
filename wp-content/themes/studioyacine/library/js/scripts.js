@@ -5,7 +5,6 @@
 
   function init() {
     breakpoint();
-    console.log('asd');
   }
 
   function breakpoint() {
@@ -18,7 +17,7 @@
         .replace(/\"/g, "");
     };
 
-    jQuery(window)
+    $(window)
       .resize(function() {
         breakpoint_refreshValue();
       })

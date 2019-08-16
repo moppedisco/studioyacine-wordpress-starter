@@ -1,15 +1,6 @@
 /******************************************************************
-Site Name: mpag.com
+Site Name: 
 Author: Yacine Belarbi @ studioyacine.ch
-
-Stylesheet: Login Stylesheet
-
-This stylesheet is loaded (if admin.php is setup in your
-functions file) on the login page. This way you can style
-the login page. It won't affect any other page, admin or front-end.
-
-For more info, check out the codex:
-http://codex.wordpress.org/Creating_Admin_Themes
 
 ******************************************************************/
 
@@ -47,8 +38,7 @@ form {
 }
 
 body form .input {
-  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue",
-    sans-serif;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
   font-weight: 200;
   font-size: 24px;
   width: 97%;
@@ -61,22 +51,3 @@ body form .input {
   outline: none;
   box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
 }
-
-/*
-You'll have to override some of the default styles
-but since we're referencing the id, it should be easy.
-*/
-#wp-submit {
-} /* login button*/
-
-/*
-retina login logo
-*/
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-  only screen and (min--moz-device-pixel-ratio: 1.5),
-  only screen and (min-device-pixel-ratio: 1.5) {
-  // you can put your 2x logo in here
-  .login h1 a {
-    // background: url(../images/login-logo@2x.png) no-repeat top center; /* make sure to replace this! */
-  }
-} // end retina media query
