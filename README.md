@@ -9,9 +9,6 @@ The following instructions will provide you with:
 
 You may wish to tailor this README to be specific to the site you are developing.
 
-
-
-
 #Setup#
 
 1. Clone this repo directly into the live web directory (public_html, httpdocs, etc.) of your environment:
@@ -25,11 +22,6 @@ You may wish to tailor this README to be specific to the site you are developing
 
 2. Download the latest copy (or any copy you wish) of wordpress and extract it to the `/wordpress/` directory.
 
-	Linux/Unix:
-
-        wget http://wordpress.org/latest.tar.gz
-        tar -xzvf latest.tar.gz
-
 	OSX:
 
         curl -O https://wordpress.org/latest.tar.gz
@@ -38,9 +30,6 @@ You may wish to tailor this README to be specific to the site you are developing
     You should probably remove the archive file too:
 
     	rm latest.tar.gz
-
-     Note: The `/wordpress` directory can just take any version of wordpress, dumped into that folder. This is also excluded from the git repo, so it is very easy to swap out different versions of wordpress for testing.
-
 
 3. Create databases for live, staging, development as required.
 
@@ -57,21 +46,8 @@ You may wish to tailor this README to be specific to the site you are developing
 
 4. Edit `wp-config.php` adding the database details for the LIVE (production) environment, and generating the 'Authentication Unique Keys and Salts', as with a normal Wordpress install.  
 
-5. (Optional) Create a wp-config-local.php to override the database details locally.
-	
-	** For developing in multiple databases/locations it is extremely useful to be able to override certain settings in wp-config.php without committing them to the repository. This is done using an if statement in wp-config.php: **
-	
-		// If 'wp-config-local.php' exists, use those settings
-		if ( file_exists( dirname( __FILE__ ) . '/wp-config-local.php' ) ) {
-			include( dirname( __FILE__ ) . '/wp-config-local.php' );
-
-		// Otherwise use the below settings (live server)
-		} else {
-
-     - `wp-config.php` - contains the above if statement, along with LIVE database details which act as a fallback if no override is found.
-     
-     - `wp-config-local.php` - contains the code below, which override settings for the local database, you can also alter paths to your HOME and CONTENT directories if your site isn't in the live web directory of your vhost.
-    
+5. Create a wp-config-local.php to override the database details locally.
+	  
     Copy and paste the following into a new file and save as 'wp-config-local.php':
 
         <?php
