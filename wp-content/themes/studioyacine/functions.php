@@ -90,4 +90,7 @@ function bones_theme_customizer($wp_customize) {
 
 add_action( 'customize_register', 'bones_theme_customizer' );
 
+/* DISABLE GUTENBERG ================ */
+add_filter('use_block_editor_for_post', '__return_false');
+
 /* DON'T DELETE THIS CLOSING TAG */ ?>
