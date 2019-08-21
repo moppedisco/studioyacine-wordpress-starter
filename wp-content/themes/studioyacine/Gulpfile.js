@@ -144,6 +144,14 @@ gulp.task("js", ["js-babel","js-bundle"], () => {
 
 // =============================================================================
 // =============================================================================
+// Copy fonts to DISTRIBUTION
+gulp.task("fonts", () => {
+  return gulp.src(pkg.paths.src.fonts+'*.{eot,ttf,woff,woff2}')
+      .pipe(gulp.dest(pkg.paths.dist.fonts));
+});
+
+// =============================================================================
+// =============================================================================
 // Configure BrowserSync
 
 gulp.task('browser-sync', () => {
@@ -152,19 +160,13 @@ gulp.task('browser-sync', () => {
         target: pkg.urls.local
     }
   });
-
-  // gulp.watch([pkg.paths.src.scss + "**/*.scss"], gulp.series("css"));
-  // gulp.watch([pkg.paths.src.js + "**/*.js"], gulp.series("js"));
-  // gulp.watch([pkg.paths.templates + "**/*.{html,htm,twig,php}"], () => {
-  //   gulp.src(pkg.paths.templates).pipe($.plumber({ errorHandler: onError }));
-  // }).on("change", $.browserSync.reload);
 });
 
 // =============================================================================
 // =============================================================================
 // Default task
 
-gulp.task("default", ["css", "js", "browser-sync"], () => {
+gulp.task("default", ["css", "js",'fonts', "browser-sync"], () => {
   gulp.watch([pkg.paths.src.scss + "**/*.scss"], ["css"]);
   // gulp.watch([pkg.paths.src.css + "**/*.css"], ["css"]);
   gulp.watch([pkg.paths.src.js + "**/*.js"], ["js"]);
