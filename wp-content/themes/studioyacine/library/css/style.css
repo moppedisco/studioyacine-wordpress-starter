@@ -591,19 +591,15 @@ Stylesheet: BASE layout stylesheet
 }
 
 .Header .Header--inner {
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 50px;
+  margin-left: calc(50% - 620px);
+  margin-right: 50px;
+  margin-right: calc(50% - 620px);
   position: relative;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-}
-
-@media (max-width: 1382px) {
-  .Header .Header--inner {
-    margin-left: 50px;
-  }
 }
 
 @media (max-width: 1050px) {
@@ -621,12 +617,6 @@ Stylesheet: BASE layout stylesheet
 @media (max-width: 400px) {
   .Header .Header--inner {
     margin-left: 15px;
-  }
-}
-
-@media (max-width: 1382px) {
-  .Header .Header--inner {
-    margin-right: 50px;
   }
 }
 
@@ -699,15 +689,11 @@ Stylesheet: BASE layout stylesheet
 }
 
 .Footer .inner-wrapper {
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 50px;
+  margin-left: calc(50% - 620px);
+  margin-right: 50px;
+  margin-right: calc(50% - 620px);
   position: relative;
-}
-
-@media (max-width: 1382px) {
-  .Footer .inner-wrapper {
-    margin-left: 50px;
-  }
 }
 
 @media (max-width: 1050px) {
@@ -725,12 +711,6 @@ Stylesheet: BASE layout stylesheet
 @media (max-width: 400px) {
   .Footer .inner-wrapper {
     margin-left: 15px;
-  }
-}
-
-@media (max-width: 1382px) {
-  .Footer .inner-wrapper {
-    margin-right: 50px;
   }
 }
 
@@ -807,13 +787,8 @@ html.overlayIsOpen body {
 .Header--flyout .Header--flyout--close {
   position: absolute;
   top: 37px;
-  right: 100px;
-}
-
-@media (max-width: 1382px) {
-  .Header--flyout .Header--flyout--close {
-    right: 50px;
-  }
+  right: 50px;
+  right: calc(50% - 620px);
 }
 
 @media (max-width: 1050px) {

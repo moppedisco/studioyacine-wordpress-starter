@@ -1,9 +1,9 @@
 @mixin sitepadding($attribute, $include-above: true) {
-  #{$attribute}: 100px;
+  #{$attribute}: 50px;
 
-  @include desktop {
-    #{$attribute}: 50px;
-  }  
+  @if $include-above {
+    #{$attribute}: calc(50% - #{$site-width / 2});
+  }
 
   @include tablet-portrait {
     #{$attribute}: 30px;
