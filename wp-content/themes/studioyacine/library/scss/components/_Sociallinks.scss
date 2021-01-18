@@ -1,0 +1,21 @@
+.SocialLinks {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    li + li {
+        margin-left: 0.75rem;
+    }
+
+    a {
+        display: block;
+    }
+
+    svg {
+        color: black;
+        display: block;
+        height: 1.25rem;
+        width: 20px;
+        
+    }
+}

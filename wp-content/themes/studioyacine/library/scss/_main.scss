@@ -1,10 +1,75 @@
 /******************************************************************
-Site Name: mpag.com
+Site Name: daskannwas
 Author: Yacine Belarbi @ studioyacine.ch
 
 Stylesheet: BASE layout stylesheet
 
 ******************************************************************/
-html {
-    // background: green;
+.Header {
+    position: relative;
+    top: 0;
+    z-index: 1;
+    background: $white;
+    margin-bottom: 3rem;
+
+    .Header--inner {
+        @include sitewidth;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+
+
+.Logo {
+}
+
+#menu-main-navigation {
+    display: none;
+    @include above-tablet-portrait {
+        display: flex;
+    }
+
+    li + li {
+        margin-left: 1em;
+    }
+
+    li.current-menu-item a {
+        color: $red;
+    }
+
+    a {
+        @include font-s;
+        @include font(bold);
+        text-transform: uppercase;
+    }
+}
+
+.Burger {
+    display: block;
+    position: absolute;
+    right: 0;
+    margin-top: -3px;
+    @include above-tablet-portrait {
+        display: none;
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+
+.Footer { 
+    background: $red;
+    color: $white;
+    padding: 2rem 0; 
+    text-align: center;
+
+    .inner-wrapper {
+        @include sitewidth;   
+    }
 }

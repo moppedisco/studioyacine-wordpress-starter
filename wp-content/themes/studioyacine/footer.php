@@ -28,6 +28,7 @@
 
 <?php // all js scripts are loaded in library/bones.php ?>
 <?php wp_footer(); ?>
+<?php get_template_part('templates/resource', 'svgsprite'); ?>
 
 </body>
 

@@ -1,5 +1,5 @@
 /******************************************************************
-Site Name: mpag.com
+Site Name: daskannwas
 Author: Yacine Belarbi @ studioyacine.ch
 
 Stylesheet: Main Stylesheet
@@ -9,28 +9,39 @@ Stylesheet: Main Stylesheet
 /*********************
 IMPORTING PLUGINS
 *********************/
-@import "./node_modules/modularscale-sass/stylesheets/_modularscale";
 
 /*********************
-IMPORTING BASE
+SETUP
 *********************/
 
-@import "base/0.normalize"; // normalize: http://necolas.github.io/normalize.css/
-@import "base/1.variables"; // Sass variables
-@import "base/2.settings"; // Site settings
-@import "base/3.fonts"; // Fonts
-@import "base/typography"; // typography
-@import "base/mixins"; // import mixins
-@import "base/site-base"; // import mixins
+@import '0.helpers/*';
+
+@import "1.base/0.reset";
+@import "1.base/1.settings";
+@import "1.base/2.layout";
+@import "1.base/3.font";
+@import "1.base/4.text";
+@import "1.base/5.global"; 
 
 /*********************
-IMPORTING MODULES
+BASE MODULES
 *********************/
 
-@import "modules/buttons";
+@import "2.modules/wordpress";
+@import "2.modules/buttons";
+// @import "modules/forms";
+@import "2.modules/pagination";
+@import "2.modules/cookie-consent";
 
 /*********************
-IMPORTING PAGE SPECIFIC STYLES
+GENERAL
 *********************/
 
-@import "main"; // BASIC STYLES
+@import "main";
+
+/*********************
+COMPONENTS
+*********************/
+
+@import 'components/*';
+@import 'pages/*';

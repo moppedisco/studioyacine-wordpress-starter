@@ -1,0 +1,23 @@
+/******************************************************************
+Site Name: daskannwas
+Author: Yacine Belarbi @ studioyacine.ch
+
+Stylesheet: Variables
+
+******************************************************************/
+
+$site-width: 1240px;
+$site-width-small: 800px;
+$site-columns: 12;
+
+$base-font-size: 18px;
+$base-line-height: 26px;
+
+$black: #000;
+$white: #fff;
+$red: #FE412E;
+$blue: #19D2D7;
+$peach: #fbebdb;
+
+$link-color: $black;
+$link-hover: darken($link-color, 9%);

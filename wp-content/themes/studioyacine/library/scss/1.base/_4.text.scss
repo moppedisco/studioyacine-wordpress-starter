@@ -1,0 +1,275 @@
+@mixin body-font {
+	font-family: $body;
+}
+
+@mixin font-xl {
+	font-family: $headline;
+	@include font(medium);
+	font-size: 60px;
+	line-height: 60px;
+	letter-spacing: -0.04em;
+	text-indent: -0.04em;
+	@include above-mobile {
+		font-size: 140px;
+		line-height: 110px;	
+	}
+}
+
+@mixin font-l {
+	font-family: $headline;
+	@include font(medium);
+	letter-spacing: -0.04em;
+	@include above-mobile {
+		font-size: 45px;
+		line-height: 50px;
+	}
+}
+
+@mixin font-m {
+	font-family: $headline;
+	letter-spacing: -0.036em;
+	font-size: 32px;
+	line-height: 38px;
+	margin-left: -0.04em;
+}
+
+@mixin font-base {
+	// @include font(light);
+	font-size: 18px;
+	line-height: 24px;
+}
+
+@mixin font-s {
+	font-size: 14px;
+	line-height: 20px;
+}
+
+@mixin font-xs {
+	font-size: 12px;
+	line-height: 18px;
+}
+
+@mixin text-uppercase {
+	@include font-xs;
+	@include font(bold);
+	text-transform: uppercase;
+	margin-bottom: 2rem;
+	@include above-mobile {
+		margin-bottom: 1rem;
+	}
+}
+
+@mixin h1 {
+	@include font-l;
+	font-family: $headline;
+	margin-bottom: 0.5ex;
+}
+
+@mixin h2 {
+	font-family: $headline;
+	@include font-m;
+				
+	// margin-top: 2em;
+	margin-bottom: 1em;	
+}
+
+@mixin h3 {
+	font-family: $headline;
+
+	// margin-top: 1.5em;
+	margin-bottom: 0.5ex;
+}
+
+@mixin h4 {
+	// @include font-s;
+}
+
+@mixin paragraph {
+	margin-bottom: 1em;
+}
+
+@mixin italic {
+	@include font('italic');
+}
+
+@mixin strong {
+	@include font('medium');
+}
+
+@mixin a {
+	color: $black;
+	text-decoration: underline;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+@mixin pre {
+	padding: 20px;
+	background: $white;
+}
+
+@mixin code {
+	background: white;
+}
+
+@mixin ul {
+	margin-left: -1em;
+	@include mobile {
+		max-width: 80%;
+	}
+
+	display: block;
+
+	> li {
+		padding-left: 2em;
+
+		position: relative;
+		list-style-type: none;
+		margin-bottom: 1.5ex;
+
+		&:before {
+			position: absolute;
+			left: 0;
+			display: inline-block;
+			@include font(medium);
+			content: '\2013';
+		}
+	}
+}
+@mixin ol {
+	@include ul;
+
+	display: block;
+	counter-reset: ol--counter;
+
+	> li:not(.gfield) {
+		padding-left: 2em;
+		list-style-type: none;
+
+		&:before {
+			margin-left: -1.5em;
+			counter-increment: ol--counter;
+			content: counter(ol--counter) '.';
+			text-align: right;
+			width: 4ex;
+		}
+	}
+
+	/*html*/
+
+	.ie & {
+		> li {
+			list-style: decimal inside none;
+		}
+	}
+}
+
+@mixin table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+@mixin richtext($include: most) {
+	@if $include == all {
+		h1 {
+			@include h1;
+		}
+
+		h2 {
+			@include h2;
+		}
+
+		h3 {
+			@include h3;
+		}
+
+		pre {
+			@include pre;
+
+			margin: 1em 0;
+		}
+
+		code {
+			@include code;
+		}
+
+		pre code,
+		pre pre,
+		code pre {
+			background: transparent;
+		}
+	}
+
+	@if $include == most or $include == all {
+		table {
+			@include table;
+		}
+
+		p {
+			@include paragraph;
+			@include font-base;
+		}
+
+		ul {
+			@include ul;
+
+			margin: 1em 0;
+		}
+
+		ol {
+			@include ol;
+
+			margin: 1em 0;
+		}
+	}
+
+	strong {
+		@include strong;
+	}
+
+	em, i {
+		@include italic;
+	}	
+
+	a {
+		@include a;
+	}
+
+	::-moz-selection {
+		text-shadow: none;
+		background: #eee;
+	}
+	
+	::selection {
+		text-shadow: none;
+		background: #eee;
+	}	
+
+	.has-label-font-size {
+		@include text-uppercase;
+	}
+
+	.has-large-font-size {
+		@include font-l;
+	}
+
+	.has-blue-color {
+		color: $blue;
+	}
+}
+
+@mixin nowrap {
+	white-space: nowrap;
+}
+
+@mixin hyphenate {
+	hyphens: auto;
+}
+
+@mixin overflow-ellipsis {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}

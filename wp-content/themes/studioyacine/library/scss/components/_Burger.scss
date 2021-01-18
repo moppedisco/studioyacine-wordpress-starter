@@ -1,0 +1,14 @@
+.Burger {
+    display: block;
+    position: absolute;
+    right: 0;
+    margin-top: -3px;
+    @include above-tablet-portrait {
+        display: none;
+    }
+
+    svg {
+        width: 24px;
+        height: 24px;
+    }
+}

@@ -1,0 +1,83 @@
+html.overlayIsOpen {
+    overflow-y: hidden;        
+
+    body {
+        overflow: hidden;        
+    }
+}
+
+.Header--flyout {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 5;
+    width: 320px;
+    height: 100vh;
+    background: $red;
+    padding: 2rem;
+    padding-top: 15vh;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+
+    @include above-tablet {
+        width: 450px;
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .Header--flyout--close {
+        position: absolute;
+        top: 37px;
+        @include sitepadding(right);
+
+        svg {
+            width: 18px;
+            height: 18px;
+            color: $white;
+        }
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        flex: 1;
+    }
+
+    li + li {
+        margin-top: 1rem;
+    }
+
+    a {
+        @include font-m;
+        color: $white;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }    
+
+    li.current-menu-item a {
+        // color: $red;
+        opacity: 0.3;
+        pointer-events: none;
+    }
+}
+
+.overlayIsOpen .Header--flyout {
+    transform: translateX(0);
+}
+
+.Header--close-overlay {
+    background: #000;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    display: none;
+    cursor: pointer;
+}

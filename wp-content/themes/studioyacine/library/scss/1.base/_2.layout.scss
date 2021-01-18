@@ -1,0 +1,45 @@
+@mixin sitepadding($attribute, $include-above: true) {
+  #{$attribute}: 100px;
+
+  @include desktop {
+    #{$attribute}: 50px;
+  }  
+
+  @include tablet-portrait {
+    #{$attribute}: 30px;
+  }
+  @include mobile {
+    #{$attribute}: 25px;
+  }
+  @include mobile-portrait {
+    #{$attribute}: 15px;
+  }
+}
+
+@mixin sitewidth {
+  @include sitepadding(margin-left);
+  @include sitepadding(margin-right);
+  position: relative;
+}
+
+@mixin sitewidth-s {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: $site-width-small;
+  width: 100%;
+}
+
+html:before {
+  content: "desktop";
+  display: none; /* Prevent from displaying. */
+}
+@include tablet {
+  html:before {
+    content: "tablet";
+  }
+}
+@include mobile {
+  html:before {
+    content: "mobile";
+  }
+}

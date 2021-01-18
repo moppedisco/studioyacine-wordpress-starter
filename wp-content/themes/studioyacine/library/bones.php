@@ -25,6 +25,12 @@ function bones_head_cleanup() {
 	remove_action( 'wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0 );
 	// WP version
 	remove_action( 'wp_head', 'wp_generator' );
+
+	remove_action( 'wp_head', 'print_emoji_detection_script', 7 ); // no php needed above it
+	remove_action( 'wp_print_styles', 'print_emoji_styles' );
+	remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+	remove_action( 'admin_print_styles', 'print_emoji_styles' ); // php is not closed in the last line
+		
 	// remove WP version from css
 	add_filter( 'style_loader_src', 'bones_remove_wp_ver_css_js', 9999 );
 	// remove Wp version from scripts
@@ -105,35 +111,54 @@ function bones_scripts_and_styles() {
   if (!is_admin()) {
 
 		wp_deregister_script('jquery');
-		// wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
+		wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
 
-		// modernizr (without media query polyfill)
-		wp_register_script( 'bones-modernizr', get_stylesheet_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array(), '2.5.3', false );
-
-		$cache_buster = date("YmdHi", filemtime( get_stylesheet_directory() . '/build/css/style.css'));
+		$cache_buster = date("YmdHi", filemtime( get_stylesheet_directory() . '/library/css/style.css'));
 
 		// register main stylesheet
-		wp_register_style( 'bones-stylesheet', get_stylesheet_directory_uri() . '/dist/css/site.combined.min.css', array(), $cache_buster, 'all' );
+		wp_register_style( 'bones-stylesheet', get_stylesheet_directory_uri() . '/dist/assets/css/main.min.css', array(), $cache_buster, 'all' );
 
 		// comment reply script for threaded comments
 		if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
 			wp_enqueue_script( 'comment-reply' );
 		}
 
-		wp_register_script( 'bones-plugins', get_stylesheet_directory_uri() . '/dist/js/plugins.min.js', '', '', true );
+		// wp_register_script( 'bones-plugins', get_stylesheet_directory_uri() . '/dist/js/plugins.min.js', '', '', true );
 
 		//adding scripts file in the footer
-		wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/dist/js/scripts.min.js', array( 'bones-plugins' ), '', true );
+		wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/dist/assets/js/all.min.js', array( 'jquery' ), '', true );
 
 		// enqueue styles and scripts
 		wp_enqueue_script( 'bones-modernizr' );
 		wp_enqueue_style( 'bones-stylesheet' );
 
-		// wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'bones-plugins' );
+		wp_enqueue_script( 'jquery' );
+		// wp_enqueue_script( 'bones-plugins' );
 		wp_enqueue_script( 'bones-js' );
-
 	}
+}
+
+function passData(){
+	global $post;
+	$category = null;
+
+	if(is_404()){
+		return array('');
+	}
+
+	if(is_category()) { 
+		$category = single_cat_title('', false);
+	} elseif(is_single()) {
+		$category = get_the_category();
+		$category = $category[0]->slug;			
+	}
+
+	return array(
+		'home' => get_stylesheet_directory_uri(),
+		'title' => $post->post_title,
+		'postId' => $post->ID,
+		'category' => $category
+	);
 }
 
 /*********************
@@ -170,13 +195,68 @@ function bones_theme_support() {
 	// wp menus
 	add_theme_support( 'menus' );
 
+	// -- Disable Gradients
+	add_theme_support( 'disable-custom-colors' );	
+
 	// registering wp3+ menus
 	register_nav_menus(
 		array(
-			'main-nav' => __( 'The Main Menu', 'bonestheme' ),   // main nav in header
+			'main-nav' => __( 'The Main Menu', 'bonestheme' ),
 			'footer-links' => __( 'Footer Links', 'bonestheme' ) // secondary nav in footer
 		)
 	);
+
+
+	add_theme_support( 'editor-color-palette', array(
+		array(
+			'name'  => __( 'Blue', 'bonestheme' ),
+			'slug'  => 'blue',
+			'color'	=> '#19D2D7',
+		),
+		array(
+			'name'  => __( 'Peach', 'bonestheme' ),
+			'slug'  => 'peach',
+			'color' => '#fbebdb',
+		),
+		array(
+			'name'	=> __( 'Red', 'bonestheme' ),
+			'slug'	=> 'red',
+			'color'	=> '#FE412E',
+		),
+	) );
+
+	add_theme_support( 'editor-font-sizes', array(
+		array(
+			'name'      => __( 'Label', 'bonestheme' ),
+			'shortName' => __( 'label', 'bonestheme' ),
+			'size'      => 12,
+			'slug'      => 'label'
+		),		
+		array(
+			'name'      => __( 'Small', 'bonestheme' ),
+			'shortName' => __( 'S', 'bonestheme' ),
+			'size'      => 14,
+			'slug'      => 'small'
+		),
+		array(
+			'name'      => __( 'Medium', 'bonestheme' ),
+			'shortName' => __( 'M', 'bonestheme' ),
+			'size'      => 28,
+			'slug'      => 'medium'
+		),
+		array(
+			'name'      => __( 'Large', 'bonestheme' ),
+			'shortName' => __( 'L', 'bonestheme' ),
+			'size'      => 40,
+			'slug'      => 'large'
+		),
+		array(
+			'name'      => __( 'XL', 'bonestheme' ),
+			'shortName' => __( 'XL', 'bonestheme' ),
+			'size'      => 60,
+			'slug'      => 'xl'
+		)
+	));	
 
 	// Enable support for HTML5 markup.
 	add_theme_support( 'html5', array(
