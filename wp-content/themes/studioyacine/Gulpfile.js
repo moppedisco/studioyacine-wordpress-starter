@@ -14,10 +14,10 @@ const postcss = require("gulp-postcss");
 const uglify = require("gulp-uglify");
 const rename = require("gulp-rename");
 const sass = require("gulp-sass");
-const globbing = require('gulp-css-globbing');
-const concat = require('gulp-concat');
+const globbing = require("gulp-css-globbing");
+const concat = require("gulp-concat");
 
-const onError = err => {
+const onError = (err) => {
     console.log(err);
 };
 
@@ -44,29 +44,48 @@ function clean() {
 function css() {
     return gulp
         .src("./library/scss/**/*.scss")
-        .pipe(globbing({extensions: ['.scss']}))
+        .pipe(globbing({ extensions: [".scss"] }))
         .pipe(plumber({ errorHandler: onError }))
         .pipe(sass({ outputStyle: "expanded" }).on("error", sass.logError))
         .pipe(gulp.dest("./library/css/"))
         .pipe(rename({ suffix: ".min", basename: "main", extname: ".css" }))
         .pipe(postcss([autoprefixer(), cssnano()]))
-        .pipe(gulp.dest("./dist/assets/css/"))
+        .pipe(gulp.dest("./dist/css/"))
         .pipe(browsersync.stream());
 }
 
 // Transpile, concatenate and minify scripts
 function scripts() {
-    return (
-        gulp
-        .src(["./library/js/cookie-consent-box.min.js","./library/js/chocolat.js","./library/js/scripts.js"])
-        .pipe(plumber({errorHandler: onError}))
-        .pipe(uglify({ mangle: false, compress: {
-            hoist_funs: false
-        }}))
+    return gulp
+        .src([
+            // "./library/js/cookie-consent-box.min.js",
+            // "./library/js/vendor/chocolat.js",
+            "./library/js/scripts.js"
+        ])
+        .pipe(plumber({ errorHandler: onError }))
+        .pipe(
+            uglify({
+                mangle: false,
+                compress: {
+                    hoist_funs: false
+                }
+            })
+        )
         .pipe(concat("all.min.js"))
-        .pipe(gulp.dest("./dist/assets/js/"))
-        .pipe(browsersync.stream())
-    );
+        .pipe(gulp.dest("./dist/js/"))
+        .pipe(browsersync.stream());
+}
+
+function wordpressAssets() {
+    return gulp
+        .src(["./library/js/vendor/jquery.min.js"])
+        .pipe(gulp.dest("./dist/js/"));
+}
+
+function staticAssets() {
+    return gulp
+        .src(["./library/fonts/" + "*.{eot,ttf,woff,woff2}"])
+        .pipe(gulp.dest("./dist/fonts/"));
 }
 
 // Watch files
@@ -79,7 +98,7 @@ function watchFiles() {
             "./blocks/**/*",
             "./templates/**/*",
             "./functions/*",
-            "./pages/*",
+            "./pages/*"
         ],
         gulp.series(browserSyncReload)
     );
@@ -87,11 +106,17 @@ function watchFiles() {
 
 // define complex tasks
 const js = gulp.series(scripts);
-const build = gulp.series(clean, gulp.parallel(css, js));
-const watch = gulp.parallel(watchFiles, browserSync);
+const build = gulp.series(
+    clean,
+    gulp.parallel(staticAssets, wordpressAssets),
+    gulp.parallel(css, js)
+);
+const watch = gulp.parallel(build, watchFiles, browserSync);
 
 // export tasks
 // exports.images = images;
+exports.staticAssets = staticAssets;
+exports.wordpressAssets = wordpressAssets;
 exports.css = css;
 exports.js = js;
 exports.clean = clean;
