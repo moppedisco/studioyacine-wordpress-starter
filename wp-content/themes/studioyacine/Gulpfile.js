@@ -24,7 +24,7 @@ const onError = err => {
 // BrowserSync
 function browserSync(done) {
     browsersync.init({
-        proxy: "studioyacine-wordpress-starter.local"
+        proxy: "uszit.local"
     });
     done();
 }

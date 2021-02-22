@@ -111,7 +111,7 @@ function bones_scripts_and_styles() {
   if (!is_admin()) {
 
 		wp_deregister_script('jquery');
-		wp_enqueue_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js', array(), null, true);
+		wp_enqueue_script('jquery', get_stylesheet_directory_uri() . '/dist/assets/js/jquery.min.js', array(), null, true);
 
 		$cache_buster = date("YmdHi", filemtime( get_stylesheet_directory() . '/library/css/style.css'));
 
