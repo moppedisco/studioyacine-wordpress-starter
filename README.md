@@ -13,7 +13,7 @@ You may wish to tailor this README to be specific to the site you are developing
 
 1.  Clone this repo directly into the live web directory (public_html, httpdocs, etc.) of your environment:
 
-        git clone https://github.com/mike-source/wordpress-starter.git .
+        git clone git@github.com:moppedisco/studioyacine-wordpress-starter.git .
 
     You most likely will want to remove the /.git/ directory and initiate a new git repository:
 
